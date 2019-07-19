@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <h1 class="mx-auto">Hi {{currentUser.first_name}}!</h1>
+  </div>
+  <div class="row">
+    <h3 class="mx-auto text-center">If you don't know football click the button below to let us draft your team for you:</h3>
+  </div>
+  <div class="">
+  <div *ngIf="!roster" class="row mt-3">
+    <button type="button" name="button" class="mx-auto btn btn-primary btn-lg" (click)="draft()">Draft!</button>
+  </div>
+  <div *ngIf="roster" class="row mt-3">
+    <button [disabled]="savedRoster" type="button" name="button" class="mx-auto btn btn-primary btn-lg" (click)="save()">Save</button>
+    <button type="button" name="button" class="mx-auto btn btn-danger btn-lg" (click)="draft()">Redraft</button>
+  </div>
+</div>
+<div *ngIf="roster" class="container mt-5">
+  <div class="row">
+    <ul class="list-group mx-auto w-100">
+      <li class="list-group-item active">Quarterback</li>
+      <li *ngFor="let player of roster.qb" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Wide Recievers</li>
+      <li *ngFor="let player of roster.wr" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Running Backs</li>
+      <li *ngFor="let player of roster.rb" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Tightend</li>
+      <li *ngFor="let player of roster.te" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Flex</li>
+      <li *ngFor="let player of roster.flex" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Defense</li>
+      <li *ngFor="let player of roster.def" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+      <li class="list-group-item active">Bench</li>
+      <li *ngFor="let player of roster.bench" class="list-group-item">{{player.displayName}} - {{player.position}} - {{player.team}}</li>
+    </ul>
+  </div>
+</div>
